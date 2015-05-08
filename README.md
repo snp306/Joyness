@@ -34,30 +34,30 @@ Notes
 
 Mjoy defaults:
 
-	WASD				- Elevator, roll
-	QE				- Rudder
-	X				- Brakes
-	Alt				- Looking around
-	Space				- X/Y axis centering
-	MiddleMouseButton		- Custom zoom toogle for CoD
-	Mousewheel			- Custom throttle for CoD
+	WASD	- Elevator, roll
+	QE	- Rudder
+	X	- Brakes
+	Alt	- Looking around
+	Space	- X/Y axis centering
+	MiddleMouseButton	- Custom zoom toogle for CoD
+	Mousewheel	- Custom throttle for CoD
 
 AxisWinToogle defaults:
 
-	Ctrl Alt + 			- Toggles Always On Top & Titlebar
-	Ctrl Alt - 			- Show/Hide Toogle Window
+	Ctrl Alt + - Toggles Always On Top & Titlebar
+	Ctrl Alt - - Show/Hide Toogle Window
 
 CoD:
 
-	Camera Control in Ind Mode	:Alt
-	Snap Forward			:Alt
-	Throttle 			:Alt; 3,4
+	Camera Control in Ind Mode :Alt
+	Snap Forward :Alt
+	Throttle  :Alt; 3,4
 
 Use Snap Mode.
 
 Make sure axes look like this:
 
-Documents\1C SoftClub\il-2 sturmovik cliffs of dover - MOD\confUser.ini
+	C:\Documents and Settings\<username>\My Documents\1C SoftClub\il-2 sturmovik cliffs of dover - MOD\confUser.ini
 
 	[HotKey pilotMove]
 	Joystick+AXE_Z=1brakes
@@ -67,12 +67,12 @@ Documents\1C SoftClub\il-2 sturmovik cliffs of dover - MOD\confUser.ini
 
 RoF:
 
-	Camera pitch			:Lalt + mouse y
-	Camera yaw			:Lalt + mouse x
-	Head vertical turn		:Lalt + mouse y
-	Head horizontal turn		:Lalt + mouse x
-	Head Snap Center		:middle mouse
-	Engine Start			:I
+	Camera pitch 		:Lalt + mouse y
+	Camera yaw   		:Lalt + mouse x
+	Head vertical turn	:Lalt + mouse y
+	Head horizontal turn	:Lalt + mouse x
+	Head Snap Center	:middle mouse
+	Engine Start		:I
 
 Known Issues
 ------------
