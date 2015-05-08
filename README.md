@@ -78,4 +78,4 @@ Known Issues
 ------------
 Mouse sensitivity is dependand on screen resolution, if set too low limits the onscreen virtual joystick range.
 
-snp306 <snappyslicer gmail com> 05-May-2015
+snp306
