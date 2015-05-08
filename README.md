@@ -15,10 +15,18 @@ Features
 - Toogleble FOV zoom
 - Mousewheel throttle
 
+Requires
+--------
+
+- FreePIE
+- vJoy
+- Joystick Curves
+- AutoHotKey
+
 Preparation
 -----------
 
-Get vJoy, Joystick Curves, FreePIE and AutoHotkey. Configure your sim keys/axes accordingly to the script (or vice versa).
+Configure your sim keys/axes accordingly to the script (or vice versa).
 Joystick Curves initializes vJoy when starting, so run the Mjoy script first.
 
 Notes
