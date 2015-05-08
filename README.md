@@ -4,7 +4,7 @@ Scripts for flight sims
 Mjoy.py - FreePIE python script for flight sims. Provides mouse and keyboard support via vJoy device driver and some other features.
 Tested with IL-2: Cliffs of Dover and Rise of Flight, but should work with other games as well. 
 
-AxisViewToogle.ahk - AutoHotkey script for toogling axis window. Made for Joystick Curves. 
+AxisWinToogle.ahk - AutoHotkey script for toogling axis window. Made for Joystick Curves. 
 Game needs to run in the fullscreen window mode.
 
 Features
