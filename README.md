@@ -47,19 +47,19 @@ Make sure axes look like this:
 Documents\1C SoftClub\il-2 sturmovik cliffs of dover - MOD\confUser.ini
 
 [HotKey pilotMove]
-Joystick+AXE_Z=1brakes
-Joystick+AXE_RZ=1rudder
-Joystick+AXE_Y=1elevator
-Joystick+AXE_X=1aileron
+- Joystick+AXE_Z=1brakes
+- Joystick+AXE_RZ=1rudder
+- Joystick+AXE_Y=1elevator
+- Joystick+AXE_X=1aileron
 
 RoF:
 
-Camera pitch			:Lalt + mouse y
-Camera yaw			:Lalt + mouse x
-Head vertical turn		:Lalt + mouse y
-Head horizontal turn		:Lalt + mouse x
-Head Snap Center		:middle mouse
-Engine Start			:I
+- Camera pitch			:Lalt + mouse y
+- Camera yaw			:Lalt + mouse x
+- Head vertical turn		:Lalt + mouse y
+- Head horizontal turn		:Lalt + mouse x
+- Head Snap Center		:middle mouse
+- Engine Start			:I
 
 Known Issues
 ------------
