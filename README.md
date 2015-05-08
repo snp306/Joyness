@@ -34,6 +34,10 @@ Space				- X/Y axis centering
 MiddleMouseButton		- Custom zoom toogle for CoD
 Mousewheel			- Custom throttle for CoD
 
+AxisWinToogle defaults:
+Ctrl Alt + 			- Toggles Always On Top & Titlebar
+Ctrl Alt - 			- Show/Hide Toogle Window
+
 CoD:
 
 Camera Control in Ind Mode	:Alt
