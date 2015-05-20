@@ -7,6 +7,8 @@ Tested with IL-2: Cliffs of Dover and Rise of Flight, but should work with other
 AxisWinToogle.ahk - AutoHotkey script for toogling axis window. Made for Joystick Curves. 
 Game needs to run in the fullscreen window mode.
 
+TrackIR_keyb.py - Emulating trackIR input using a keyboard.
+
 Features
 --------
 
