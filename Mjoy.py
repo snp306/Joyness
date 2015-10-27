@@ -1,5 +1,5 @@
 #Title         :Mjoy vJoy FreePIE python script
-#Version       :0.1 (2015-05-05)
+#Version       :0.2 (2015-10-27)
 #Author        :snp
 #Description   :FreePIE python script for flight sims. Provides mouse and keyboard support via vJoy device driver and some other features.
 
@@ -26,6 +26,7 @@ if starting:
    mouse_y_locked = 0
    x_m = 0
    y_m = 0
+   axis_max = 16448
    screen_x = windll.user32.GetSystemMetrics(0)
    screen_y = windll.user32.GetSystemMetrics(1)
    pt = POINT()   
@@ -41,6 +42,16 @@ if keyboard.getPressed(Key.LeftAlt):
 
 if keyboard.getKeyDown(Key.LeftAlt):
    windll.user32.SetCursorPos((mouse_x_locked),(mouse_y_locked))
+
+# Lock key
+
+if keyboard.getPressed(Key.End):
+   mouse_x_locked = pt.x
+   mouse_y_locked = pt.y
+
+if keyboard.getKeyDown(Key.End):
+   windll.user32.SetCursorPos((mouse_x_locked),(mouse_y_locked))
+
 
 # Il2 CoD - Mousewheel throttle
 
@@ -70,42 +81,42 @@ if keyboard.getPressed(Key.PageUp):
 
 # Rudder control
 
-if rz > 16400:
-   rz = 16400
+if rz > axis_max:
+   rz = axis_max
    
-if rz < - 16400:
-   rz = - 16400
+if rz < - axis_max:
+   rz = - axis_max
 
 if keyboard.getKeyDown(Key.Q):
-   rz = rz - 100
+   rz = rz - 60
 
 if keyboard.getKeyUp(Key.E):
    if keyboard.getKeyUp(Key.Q):
       if rz > 0:
-         rz = rz - 100
+         rz = rz - 60
       if rz < 0:
-         rz = rz + 100
+         rz = rz + 60
       
 if keyboard.getKeyDown(Key.E):
-   rz = rz + 100
+   rz = rz + 60
 
 vJoy[0].rz = rz
 
 # Brakes control
 
-if z > 16400:
-   z = 16400
+if z > axis_max:
+   z = axis_max
    
-if z < - 16400:
-   z = - 16400
+if z < - axis_max:
+   z = - axis_max
 
 if keyboard.getKeyDown(Key.X):
    z = z + 100
    vJoy[0].z = z
 
 if keyboard.getKeyUp(Key.X):
-   z = -16400
-   vJoy[0].z = -16400
+   z = -axis_max
+   vJoy[0].z = -axis_max
    
 # X/Y axis centering
 
@@ -126,47 +137,48 @@ if vJoy0_stat == 1:
    y_m = (mouse_y - (screen_y / 2)) * sensitivity
    x_both = x_m + x
    y_both = y_m + y
-   x_keyb_sensitivity = 80
+   x_keyb_sensitivity = 65
    y_keyb_sensitivity = 20
    
-   if x_m > 16400:
-      x_m = 16400
+   if x_m > axis_max:
+      x_m = axis_max
    
-   if x_m < - 16400:
-      x_m = - 16400
+   if x_m < - axis_max:
+      x_m = - axis_max
       
-   if y_m > 16400:
-      y_m = 16400
+   if y_m > axis_max:
+      y_m = axis_max
    
-   if y_m < - 16400:
-      y_m = - 16400
+   if y_m < - axis_max:
+      y_m = - axis_max
    
-   if x > 16400:
-      x = 16400
+   if x > axis_max:
+      x = axis_max
    
-   if x < - 16400:
-      x = - 16400
+   if x < - axis_max:
+      x = - axis_max
       
-   if y > 16400:
-      y = 16400
+   if y > axis_max:
+      y = axis_max
    
-   if y < - 16400:
-      y = - 16400
+   if y < - axis_max:
+      y = - axis_max
       
-   if x_both > 16400:
-      x_both = 16400
+   if x_both > axis_max:
+      x_both = axis_max
    
-   if x_both < - 16400:
-      x_both = - 16400
+   if x_both < - axis_max:
+      x_both = - axis_max
       
-   if y_both > 16400:
-      y_both = 16400
+   if y_both > axis_max:
+      y_both = axis_max
    
-   if y_both < - 16400:
-      y_both = - 16400
+   if y_both < - axis_max:
+      y_both = - axis_max
       
    if keyboard.getKeyDown(Key.A):
       x = x - x_keyb_sensitivity
+      keyboard.setPressed(Key.End)
 
    if keyboard.getKeyUp(Key.D):
       if keyboard.getKeyUp(Key.A):
@@ -177,9 +189,11 @@ if vJoy0_stat == 1:
 
    if keyboard.getKeyDown(Key.D):
       x = x + x_keyb_sensitivity
-
+      keyboard.setPressed(Key.End)
+      
    if keyboard.getKeyDown(Key.W):
       y = y - y_keyb_sensitivity
+      keyboard.setPressed(Key.End)
 
    if keyboard.getKeyUp(Key.S):
       if keyboard.getKeyUp(Key.W):
@@ -189,6 +203,7 @@ if vJoy0_stat == 1:
             y = y + y_keyb_sensitivity
 
    if keyboard.getKeyDown(Key.S):
+      keyboard.setPressed(Key.End)
       y = y + y_keyb_sensitivity
 
    vJoy[0].x = x_both
