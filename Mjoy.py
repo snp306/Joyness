@@ -52,7 +52,6 @@ if keyboard.getPressed(Key.End):
 if keyboard.getKeyDown(Key.End):
    windll.user32.SetCursorPos((mouse_x_locked),(mouse_y_locked))
 
-
 # Il2 CoD - Mousewheel throttle
 
 if mouse.wheelUp:
