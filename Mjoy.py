@@ -1,5 +1,5 @@
 #Title         :Mjoy vJoy FreePIE python script
-#Version       :0.2 (2015-10-27)
+#Version       :0.3 (2016-02-15)
 #Author        :snp
 #Description   :FreePIE python script for flight sims. Provides mouse and keyboard support via vJoy device driver and some other features.
 
@@ -11,7 +11,7 @@ class POINT(Structure):
    _fields_ = [("x", c_ulong), ("y", c_ulong)]
 
 if starting:
-   vJoy0_stat = 0
+   vJoy0_stat = 1
    vJoy[0].x = 0
    vJoy[0].y = 0
    vJoy[0].z = 0
@@ -124,8 +124,17 @@ if keyboard.getKeyDown(Key.Space):
 
 # Mjoy vJoy
 
-if keyboard.getKeyUp(Key.LeftAlt):
-   vJoy0_stat = 1
+#Turn VJoy on/off
+
+if keyboard.getPressed(Key.K):
+   if sequence == 0:
+      vJoy0_stat = 1   
+   elif sequence == 1:
+      vJoy0_stat = 0
+      
+   sequence = sequence + 1
+   if sequence > 1:
+      sequence = 0
    
 if vJoy0_stat == 1:
    windll.user32.GetCursorPos(byref(pt))
