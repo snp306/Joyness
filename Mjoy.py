@@ -145,7 +145,7 @@ if vJoy0_stat == 1:
    y_m = (mouse_y - (screen_y / 2)) * sensitivity
    x_both = x_m + x
    y_both = y_m + y
-   x_keyb_sensitivity = 65
+   x_keyb_sensitivity = 85
    y_keyb_sensitivity = 20
    
    if x_m > axis_max:
