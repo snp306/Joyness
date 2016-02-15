@@ -128,9 +128,9 @@ if keyboard.getKeyDown(Key.Space):
 
 if keyboard.getPressed(Key.K):
    if sequence == 0:
-      vJoy0_stat = 1   
+      vJoy0_stat = 0   
    elif sequence == 1:
-      vJoy0_stat = 0
+      vJoy0_stat = 1
       
    sequence = sequence + 1
    if sequence > 1:
