@@ -36,6 +36,7 @@ Notes
 
 Mjoy defaults:
 
+	K - Disable/Enable mjoy
 	WASD	- Elevator, roll
 	QE	- Rudder
 	X	- Brakes
