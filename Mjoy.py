@@ -1,5 +1,5 @@
 #Title         :Mjoy vJoy FreePIE python script
-#Version       :0.3 (2016-02-15)
+#Version       :0.4 (2016-03-20)
 #Author        :snp
 #Description   :FreePIE python script for flight sims. Provides mouse and keyboard support via vJoy device driver and some other features.
 
@@ -43,15 +43,6 @@ if keyboard.getPressed(Key.LeftAlt):
 if keyboard.getKeyDown(Key.LeftAlt):
    windll.user32.SetCursorPos((mouse_x_locked),(mouse_y_locked))
 
-# Lock key
-
-if keyboard.getPressed(Key.End):
-   mouse_x_locked = pt.x
-   mouse_y_locked = pt.y
-
-if keyboard.getKeyDown(Key.End):
-   windll.user32.SetCursorPos((mouse_x_locked),(mouse_y_locked))
-
 # Il2 CoD - Mousewheel throttle
 
 if mouse.wheelUp:
@@ -61,19 +52,13 @@ if mouse.wheelDown:
    keyboard.setPressed(Key.D3)
 
 # Il2 CoD - Toogleable FOV zoom
-# Doesn't work with middleButton directly
 
-if mouse.middleButton:
-   keyboard.setPressed(Key.PageUp)
-
-if keyboard.getPressed(Key.PageUp):
+if mouse.getPressed(2):
    if sequence == 0:
-      keyboard.setPressed(Key.D7)   
+      keyboard.setPressed(Key.D7)
    elif sequence == 1:
-      keyboard.setKeyDown(Key.LeftControl)
-      time.sleep(1)
-      keyboard.setKeyUp(Key.LeftControl)
-      
+      keyboard.setPressed(Key.V)
+
    sequence = sequence + 1
    if sequence > 1:
       sequence = 0
@@ -124,7 +109,7 @@ if keyboard.getKeyDown(Key.Space):
 
 # Mjoy vJoy
 
-#Turn VJoy on/off
+# Turn VJoy on/off
 
 if keyboard.getPressed(Key.K):
    if sequence == 0:
@@ -145,8 +130,8 @@ if vJoy0_stat == 1:
    y_m = (mouse_y - (screen_y / 2)) * sensitivity
    x_both = x_m + x
    y_both = y_m + y
-   x_keyb_sensitivity = 85
-   y_keyb_sensitivity = 20
+   x_keyb_sensitivity = 350
+   y_keyb_sensitivity = 50
    
    if x_m > axis_max:
       x_m = axis_max
@@ -186,7 +171,6 @@ if vJoy0_stat == 1:
       
    if keyboard.getKeyDown(Key.A):
       x = x - x_keyb_sensitivity
-      keyboard.setPressed(Key.End)
 
    if keyboard.getKeyUp(Key.D):
       if keyboard.getKeyUp(Key.A):
@@ -197,11 +181,9 @@ if vJoy0_stat == 1:
 
    if keyboard.getKeyDown(Key.D):
       x = x + x_keyb_sensitivity
-      keyboard.setPressed(Key.End)
       
    if keyboard.getKeyDown(Key.W):
       y = y - y_keyb_sensitivity
-      keyboard.setPressed(Key.End)
 
    if keyboard.getKeyUp(Key.S):
       if keyboard.getKeyUp(Key.W):
@@ -211,12 +193,11 @@ if vJoy0_stat == 1:
             y = y + y_keyb_sensitivity
 
    if keyboard.getKeyDown(Key.S):
-      keyboard.setPressed(Key.End)
       y = y + y_keyb_sensitivity
 
-   vJoy[0].x = x_both
-   vJoy[0].y = y_both
-
+   vJoy[0].x = x_m + x
+   vJoy[0].y = y_m + y
+   
 # Diag
 
 diagnostics.watch(screen_x)
