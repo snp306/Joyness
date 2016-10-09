@@ -60,9 +60,9 @@ if keyboard.getKeyDown(Key.D2):
    y = y + 0.01
    trackIR.y = y
 
-+if keyboard.getKeyDown(Key.LeftAlt): # Sometimes view resets to default position for "no reason" and this not really fixes it.
- +   x = x + 0.2
- +   trackIR.x = x
+if keyboard.getKeyDown(Key.LeftAlt): # Sometimes view resets to default position for "no reason" and this not really fixes it.
+   x = x + 0.2
+   trackIR.x = x
    
 trackIR.y = y
 trackIR.z = z
