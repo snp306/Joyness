@@ -1,5 +1,5 @@
 #Title           :Keyb trackIR FreePIE python script
-#Version         :0.1 (2015-05-15)
+#Version         :0.2 (2016-10-08)
 #Author          :snp
 #Description     :FreePIE python script for flight sims. Provides keyboard support via trackIR.
 
@@ -8,22 +8,26 @@ from System import Int16
 if starting:
    trackIR.x = 0
    trackIR.y = 0
+   trackIR.z = 0
    x = 0
    y = 0
+   z = 0
    position = 0
    sequence = 0
-   
-if x > 30:
-   x = 30
 
-if x < -30:
-   x = -30 
- 
-if y > 5:
-   y = 5
+clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
 
-if y < -30:
-   y = -30
+x = clamp(x, -15, 15)
+y = clamp(y, 0, 9)
+z = clamp(z, -40, 30)
+
+if keyboard.getKeyDown(Key.N):
+   z = z - 0.2
+   trackIR.z = z
+
+if keyboard.getKeyDown(Key.J):
+   z = z + 0.2
+   trackIR.z = z
 
 if keyboard.getPressed(Key.X):
    if sequence == 0:
@@ -56,11 +60,10 @@ if keyboard.getKeyDown(Key.D2):
    y = y + 0.01
    trackIR.y = y
 
-if keyboard.getKeyDown(Key.LeftAlt): # Sometimes view resets to default position for "no reason" and this fixes it.
-   x = x + 0.2
-   trackIR.x = x
-
+trackIR.x = x
 trackIR.y = y
+trackIR.z = z
    
 diagnostics.watch(trackIR.x)
 diagnostics.watch(trackIR.y)
+diagnostics.watch(trackIR.z)
