@@ -1,5 +1,5 @@
 #Title         :Mjoy vJoy FreePIE python script
-#Version       :0.4 (2016-03-20)
+#Version       :0.5 (2016-10-08)
 #Author        :snp
 #Description   :FreePIE python script for flight sims. Provides mouse and keyboard support via vJoy device driver and some other features.
 
@@ -26,13 +26,15 @@ if starting:
    mouse_y_locked = 0
    x_m = 0
    y_m = 0
-   axis_max = 16448
+   axis_max = 32767
    screen_x = windll.user32.GetSystemMetrics(0)
    screen_y = windll.user32.GetSystemMetrics(1)
    pt = POINT()   
    sequence = 0
    system.setThreadTiming(TimingTypes.HighresSystemTimer)
    system.threadExecutionInterval = 1
+
+clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
 
 # Mouse looking around
 
@@ -65,37 +67,27 @@ if mouse.getPressed(2):
 
 # Rudder control
 
-if rz > axis_max:
-   rz = axis_max
-   
-if rz < - axis_max:
-   rz = - axis_max
+rz = clamp(rz, - 16384, 16384)
 
 if keyboard.getKeyDown(Key.Q):
-   rz = rz - 60
+   rz = rz - 128
 
 if keyboard.getKeyUp(Key.E):
    if keyboard.getKeyUp(Key.Q):
       if rz > 0:
-         rz = rz - 60
+         rz = rz - 128
       if rz < 0:
-         rz = rz + 60
+         rz = rz + 128
       
 if keyboard.getKeyDown(Key.E):
-   rz = rz + 60
+   rz = rz + 128
 
 vJoy[0].rz = rz
 
 # Brakes control
 
-if z > axis_max:
-   z = axis_max
-   
-if z < - axis_max:
-   z = - axis_max
-
 if keyboard.getKeyDown(Key.X):
-   z = z + 100
+   z = z + 128
    vJoy[0].z = z
 
 if keyboard.getKeyUp(Key.X):
@@ -125,49 +117,21 @@ if vJoy0_stat == 1:
    windll.user32.GetCursorPos(byref(pt))
    mouse_x = pt.x
    mouse_y = pt.y
-   sensitivity = 32
+   #sensitivity = 32
+   sensitivity = 34
    x_m = (mouse_x - (screen_x / 2)) * sensitivity
    y_m = (mouse_y - (screen_y / 2)) * sensitivity
    x_both = x_m + x
    y_both = y_m + y
    x_keyb_sensitivity = 350
-   y_keyb_sensitivity = 50
+   y_keyb_sensitivity = 60
    
-   if x_m > axis_max:
-      x_m = axis_max
-   
-   if x_m < - axis_max:
-      x_m = - axis_max
-      
-   if y_m > axis_max:
-      y_m = axis_max
-   
-   if y_m < - axis_max:
-      y_m = - axis_max
-   
-   if x > axis_max:
-      x = axis_max
-   
-   if x < - axis_max:
-      x = - axis_max
-      
-   if y > axis_max:
-      y = axis_max
-   
-   if y < - axis_max:
-      y = - axis_max
-      
-   if x_both > axis_max:
-      x_both = axis_max
-   
-   if x_both < - axis_max:
-      x_both = - axis_max
-      
-   if y_both > axis_max:
-      y_both = axis_max
-   
-   if y_both < - axis_max:
-      y_both = - axis_max
+   x_m = clamp(x_m, - axis_max, axis_max)
+   y_m = clamp(y_m, - axis_max, axis_max)
+   x = clamp(x, - axis_max, axis_max)
+   y = clamp(y, - axis_max, axis_max)
+   x_both = clamp(x_both, - axis_max, axis_max)
+   y_both = clamp(y_both, - axis_max, axis_max)
       
    if keyboard.getKeyDown(Key.A):
       x = x - x_keyb_sensitivity
@@ -199,7 +163,7 @@ if vJoy0_stat == 1:
    vJoy[0].y = y_m + y
    
 # Diag
-
+ 
 diagnostics.watch(screen_x)
 diagnostics.watch(screen_y)
 diagnostics.watch(mouse_x)
