@@ -41,10 +41,16 @@ clamp = lambda n, minn, maxn: max(min(maxn, n), minn)
 if keyboard.getPressed(Key.LeftAlt):
    mouse_x_locked = pt.x
    mouse_y_locked = pt.y
-
+   
 if keyboard.getKeyDown(Key.LeftAlt):
    windll.user32.SetCursorPos((mouse_x_locked),(mouse_y_locked))
 
+#if keyboard.getKeyDown(Key.LeftAlt):
+#   vJoy0_stat = 0
+   
+#if keyboard.getKeyUp (Key.LeftAlt):
+#   vJoy0_stat = 1
+   
 # Il2 CoD - Mousewheel throttle
 
 if mouse.wheelUp:
@@ -97,7 +103,8 @@ if keyboard.getKeyUp(Key.X):
 # X/Y axis centering
 
 if keyboard.getKeyDown(Key.Space):
-   windll.user32.SetCursorPos((screen_x / 2),(screen_y / 2))
+   #windll.user32.SetCursorPos((screen_x / 2),(screen_y / 2))
+   windll.user32.SetCursorPos((screen_x / 2),((screen_y - 64) / 2))
 
 # Mjoy vJoy
 
@@ -105,7 +112,7 @@ if keyboard.getKeyDown(Key.Space):
 
 if keyboard.getPressed(Key.K):
    if sequence == 0:
-      vJoy0_stat = 0   
+      vJoy0_stat = 0
    elif sequence == 1:
       vJoy0_stat = 1
       
@@ -126,7 +133,7 @@ if vJoy0_stat == 1:
    y_m = (mouse_y - (screen_y / 2)) * sensitivity_y
    x_both = x_m + x
    y_both = y_m + y
-   x_keyb_sensitivity = 256
+   x_keyb_sensitivity = 512
    y_keyb_sensitivity = 64
       
    x_m = clamp(x_m, - axis_max, axis_max)
@@ -162,11 +169,8 @@ if vJoy0_stat == 1:
    if keyboard.getKeyDown(Key.S):
       y = y + y_keyb_sensitivity
    
-   #keys disabled for now.
-   #vJoy[0].x = x_both
-   #vJoy[0].y = y_both
-   vJoy[0].x = x_m
-   vJoy[0].y = y_m
+   vJoy[0].x = x_both
+   vJoy[0].y = y_both
    
 # Diag
  
