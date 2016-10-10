@@ -26,7 +26,7 @@ if starting:
    mouse_y_locked = 0
    x_m = 0
    y_m = 0
-   axis_max = 32767
+   axis_max = 16384
    screen_x = windll.user32.GetSystemMetrics(0)
    screen_y = windll.user32.GetSystemMetrics(1)
    pt = POINT()   
@@ -67,7 +67,7 @@ if mouse.getPressed(2):
 
 # Rudder control
 
-rz = clamp(rz, - 16384, 16384)
+rz = clamp(rz, - axis_max, axis_max)
 
 if keyboard.getKeyDown(Key.Q):
    rz = rz - 128
@@ -112,20 +112,23 @@ if keyboard.getPressed(Key.K):
    sequence = sequence + 1
    if sequence > 1:
       sequence = 0
-   
+
+x = clamp(x, - axis_max, axis_max)
+y = clamp(y, - axis_max, axis_max)
+
 if vJoy0_stat == 1:
    windll.user32.GetCursorPos(byref(pt))
    mouse_x = pt.x
    mouse_y = pt.y
-   #sensitivity = 32
-   sensitivity = 34
-   x_m = (mouse_x - (screen_x / 2)) * sensitivity
-   y_m = (mouse_y - (screen_y / 2)) * sensitivity
+   sensitivity_x = 26
+   sensitivity_y = 40
+   x_m = (mouse_x - (screen_x / 2)) * sensitivity_x
+   y_m = (mouse_y - (screen_y / 2)) * sensitivity_y
    x_both = x_m + x
    y_both = y_m + y
-   x_keyb_sensitivity = 350
-   y_keyb_sensitivity = 60
-   
+   x_keyb_sensitivity = 256
+   y_keyb_sensitivity = 64
+      
    x_m = clamp(x_m, - axis_max, axis_max)
    y_m = clamp(y_m, - axis_max, axis_max)
    x = clamp(x, - axis_max, axis_max)
@@ -158,9 +161,12 @@ if vJoy0_stat == 1:
 
    if keyboard.getKeyDown(Key.S):
       y = y + y_keyb_sensitivity
-
-   vJoy[0].x = x_m + x
-   vJoy[0].y = y_m + y
+   
+   #keys disabled for now.
+   #vJoy[0].x = x_both
+   #vJoy[0].y = y_both
+   vJoy[0].x = x_m
+   vJoy[0].y = y_m
    
 # Diag
  
