@@ -171,6 +171,8 @@ if vJoy0_stat == 1:
    
    vJoy[0].x = x_both
    vJoy[0].y = y_both
+   #vJoy[0].x = x_m
+   #vJoy[0].y = y_m
    
 # Diag
  
