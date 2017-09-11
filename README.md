@@ -14,7 +14,7 @@ Features
 
 - Mjoy/keyb virtual joystick
 - Rudder and Brakes keyb axes
-- Toogleble FOV zoom
+- Tooglable FOV zoom
 - Mousewheel throttle
 
 Requires
@@ -79,6 +79,4 @@ RoF:
 
 Known Issues
 ------------
-Mouse sensitivity is dependand on screen resolution, if set too low limits the onscreen virtual joystick range.
-
-snp306
+Mouse sensitivity is dependant on screen resolution, if set too low limits the onscreen virtual joystick range.
